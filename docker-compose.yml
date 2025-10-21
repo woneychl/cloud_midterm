@@ -5,9 +5,8 @@ services:
       dockerfile: api/Dockerfile
     volumes:
       - ./data:/app/data
-    # 필요시 헬스체크 추가
-    # expose:
-    #   - "5000"
+    expose:
+      - "5000"
 
   web:
     image: nginx:1.25
@@ -16,3 +15,5 @@ services:
     volumes:
       - ./nginx/html:/usr/share/nginx/html:ro
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api
